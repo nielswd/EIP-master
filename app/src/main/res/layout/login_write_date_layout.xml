@@ -1,0 +1,186 @@
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:background="@android:color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#00547c">
+
+
+        <TextView
+            android:id="@+id/groom_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Groom"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"
+            android:layout_alignBottom="@+id/imageView4"
+            android:layout_toRightOf="@+id/imageView4"
+            android:layout_toEndOf="@+id/imageView4"
+            android:layout_marginLeft="12dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginBottom="13dp" />
+
+        <TextView
+            android:id="@+id/smart_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Smart"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"
+            android:layout_alignTop="@+id/imageView4"
+            android:layout_toLeftOf="@+id/imageView4"
+            android:layout_toStartOf="@+id/imageView4"
+            android:layout_marginRight="8dp"
+            android:layout_marginEnd="8dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true">
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_boder_login_field"
+            android:layout_marginTop="8dp">
+            <EditText
+                android:id="@+id/username"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:drawablePadding="16dp"
+                android:paddingStart="8dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingEnd="8dp"
+                android:hint="Username"
+                android:background="@android:color/transparent"
+                android:textColorHint="@color/divider"
+                android:singleLine="true"
+                android:drawableStart="@mipmap/icon_user"
+                android:drawableLeft="@mipmap/icon_user"
+>
+            </EditText>
+        </FrameLayout>
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_boder_login_field"
+                android:layout_marginTop="8dp">
+                <EditText
+                    android:id="@+id/password"
+                    android:layout_width="300dp"
+                    android:layout_height="50dp"
+                    android:background="@android:color/transparent"
+                    android:drawablePadding="16dp"
+                    android:paddingStart="8dp"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:paddingEnd="8dp"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    android:textColorHint="@color/divider"
+                    android:singleLine="true"
+                    android:drawableStart="@mipmap/icon_cadenas"
+                    android:drawableLeft="@mipmap/icon_cadenas">
+                </EditText>
+            </FrameLayout>
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_boder_login_field"
+                android:layout_marginTop="8dp">
+                <EditText
+                    android:id="@+id/roomNumber"
+                    android:inputType="text"
+                    android:layout_width="300dp"
+                    android:layout_height="50dp"
+                    android:drawablePadding="16dp"
+                    android:paddingStart="8dp"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:paddingEnd="8dp"
+                    android:hint="Room Number"
+                    android:background="@android:color/transparent"
+                    android:textColorHint="@color/divider"
+                    android:singleLine="true"
+                    android:drawableStart="@mipmap/icon_cle"
+                    android:drawableLeft="@mipmap/icon_cle">
+                </EditText>
+            </FrameLayout>
+            <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
+                android:layout_marginTop="16dp"
+                android:id="@+id/btnConnect"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                app:initialCornerAngle="50dp"
+                android:text="Login"
+                android:textColor="@color/icons"
+                android:clickable="true"
+                android:background="@drawable/rounded_border_login_button_blue"
+                app:spinning_bar_width="4dp"
+            app:spinning_bar_color="#FFF"
+            app:spinning_bar_padding="6dp"/>
+        </LinearLayout>
+
+        <FrameLayout
+            android:background="@drawable/circular_frame"
+            android:id="@+id/framelayout_barcode"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:orientation="vertical"
+            android:padding="5dip"
+            android:layout_marginBottom="21dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="26dp"
+            android:layout_marginStart="26dp">
+
+
+
+            <ImageView
+                android:id="@+id/imageview2"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_barcode"/>
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/image_first2"
+                android:orientation="vertical"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_take_picture"
+                app:backgroundTint="@color/secondary_text"
+                android:layout_marginTop="10dp"
+                app:fab_size="mini"
+                android:layout_gravity="bottom|center"/>
+        </FrameLayout>
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginStart="4dp"
+            android:src="@drawable/ic_back_iphone"
+            android:layout_marginBottom="33dp"
+            android:layout_alignBottom="@+id/framelayout_barcode" />
+        <ImageView
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:src="@mipmap/logo"
+            android:id="@+id/imageView4"
+            android:layout_marginTop="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>

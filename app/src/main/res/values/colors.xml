@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#424242</color>
+    <color name="colorPrimaryDark">#212121</color>
+    <color name="colorPrimaryLight">#757575</color>
+    <color name="colorAccent">#B6B6B6</color>
+    <color name="textColorPrimary">#1976D2</color>
+    <color name="secondary_text">#2196F3</color>
+
+    <color name="color_light">#BBDEFB</color>
+    <color name="icons">#FFFFFF</color>
+    <color name="divider">#B6B6B6</color>
+
+    <color name="replacementAccent">#B6B6B6</color>
+
+    <color name="logincolor">#00547c</color>
+    <color name="login2">#0079a7</color>
+</resources>
+

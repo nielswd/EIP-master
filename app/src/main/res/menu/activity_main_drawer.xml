@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_camera"
+            android:icon="@mipmap/home"
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_slideshow"
+            android:icon="@mipmap/domotic"
+            android:title="List Requests" />
+        <item
+            android:id="@+id/nav_manage"
+            android:icon="@mipmap/parameters"
+            android:title="List Messages" />
+        <item
+            android:id="@+id/domo"
+            android:icon="@mipmap/domotic"
+            android:title="List Devices" />
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@mipmap/notify_problem"
+                android:title="Deconnexion" />
+        </menu>
+    </item>
+
+</menu>
