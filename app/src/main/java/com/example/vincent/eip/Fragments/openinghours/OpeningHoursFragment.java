@@ -55,6 +55,7 @@ public class OpeningHoursFragment extends Fragment {
 //        data.getTransports(mContainerActivity, clientInfo);
 
         recyclerView = (RecyclerView) fragView.findViewById(R.id.my_recycler_view);
+        recyclerView.setNestedScrollingEnabled(false);
 
         OpeningHoursRetrofit transportRetrofit = new OpeningHoursRetrofit();
         transportRetrofit.login(mContainerActivity, clientInfo, new OpeningHoursCallback() {

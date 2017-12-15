@@ -24,13 +24,14 @@ public class RVAdapterTouristicPlaces extends RecyclerView.Adapter<RVAdapterTour
     private int expandedPosition = -1;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView nameItem, mItemDescription;
+        public TextView nameItem, mItemDescription, mStart;
         public LinearLayout mItemExpend;
         public CardView mRootItem;
 
         public MyViewHolder(View view) {
             super(view);
             nameItem = (TextView) view.findViewById(R.id.item_title);
+            mStart = (TextView) view.findViewById(R.id.item_start);
             mItemDescription = (TextView) view.findViewById(R.id.item_description);
             mItemExpend = (LinearLayout) view.findViewById(R.id.llExpandArea);
             mRootItem = (CardView) view.findViewById(R.id.llCardBack);
@@ -45,7 +46,7 @@ public class RVAdapterTouristicPlaces extends RecyclerView.Adapter<RVAdapterTour
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.rv_item_openinghours, parent, false);
+                .inflate(R.layout.item_touristicplaces, parent, false);
 
         return new MyViewHolder(itemView);
     }
@@ -54,7 +55,8 @@ public class RVAdapterTouristicPlaces extends RecyclerView.Adapter<RVAdapterTour
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         TouristicPlace newItem = touristicPlaces.getList().get(position);
         holder.nameItem.setText(newItem.getName());
-        holder.mItemDescription.setText(newItem.getHours() + "\n" + newItem.getDescription());
+        holder.mStart.setText(newItem.getHours());
+        holder.mItemDescription.setText(newItem.getDescription());
         holder.mRootItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

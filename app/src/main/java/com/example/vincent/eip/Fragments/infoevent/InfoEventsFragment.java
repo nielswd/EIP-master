@@ -61,7 +61,7 @@ public class InfoEventsFragment extends Fragment {
         InfoEventRetrofit transportRetrofit = new InfoEventRetrofit();
 
         recyclerView = (RecyclerView) fragView.findViewById(R.id.my_recycler_view);
-
+        recyclerView.setNestedScrollingEnabled(false);
         transportRetrofit.login(mContainerActivity, clientInfo, new InfoEventsCallback() {
             @Override
             public void getInfoEventsCallBack(InfoEvents infoEvents) {

@@ -59,6 +59,7 @@ public class TouristicPlacesFragment extends Fragment {
 
         TouristicPlacesRetrofit transportRetrofit = new TouristicPlacesRetrofit();
         recyclerView = (RecyclerView) fragView.findViewById(R.id.my_recycler_view);
+        recyclerView.setNestedScrollingEnabled(false);
 
         transportRetrofit.login(mContainerActivity, clientInfo, new TouristicPlacesCallback() {
             @Override

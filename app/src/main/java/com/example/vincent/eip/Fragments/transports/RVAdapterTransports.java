@@ -24,13 +24,15 @@ public class RVAdapterTransports extends RecyclerView.Adapter<RVAdapterTransport
     private int expandedPosition = -1;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView nameItem, mItemDescription;
+        public TextView nameItem, mItemDescription,mType,mStart;
         public LinearLayout mItemExpend;
         public CardView mRootItem;
 
         public MyViewHolder(View view) {
             super(view);
             nameItem = (TextView) view.findViewById(R.id.item_title);
+            mType = (TextView) view.findViewById(R.id.item_type);
+            mStart = (TextView) view.findViewById(R.id.item_start);
             mItemDescription = (TextView) view.findViewById(R.id.item_description);
             mItemExpend = (LinearLayout) view.findViewById(R.id.llExpandArea);
             mRootItem = (CardView) view.findViewById(R.id.llCardBack);
@@ -45,7 +47,7 @@ public class RVAdapterTransports extends RecyclerView.Adapter<RVAdapterTransport
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.rv_item_openinghours, parent, false);
+                .inflate(R.layout.item_transports, parent, false);
 
         return new MyViewHolder(itemView);
     }
@@ -54,7 +56,9 @@ public class RVAdapterTransports extends RecyclerView.Adapter<RVAdapterTransport
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         Transport newItem = transports.getList().get(position);
         holder.nameItem.setText(newItem.getStation());
-        holder.mItemDescription.setText(newItem.getLine() + "\n" + newItem.getHours() + "\n" + newItem.getType());
+        holder.mType.setText(newItem.getType());
+        holder.mStart.setText(newItem.getHours());
+        holder.mItemDescription.setText(newItem.getLine());
         holder.mRootItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -60,6 +60,7 @@ public class TransportsFragment extends Fragment {
         final TransportRetrofit transportRetrofit = new TransportRetrofit();
 
         recyclerView = (RecyclerView) fragView.findViewById(R.id.my_recycler_view);
+        recyclerView.setNestedScrollingEnabled(false);
 
         transportRetrofit.login(mContainerActivity, clientInfo, new TransportsCallback() {
             @Override

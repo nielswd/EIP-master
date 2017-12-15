@@ -31,10 +31,12 @@ import com.example.vincent.eip.Fragments.RequestFragment;
 import com.example.vincent.eip.Fragments.touristicplaces.TouristicPlacesFragment;
 import com.example.vincent.eip.Fragments.transports.TransportsFragment;
 import com.example.vincent.eip.GlobalClass;
+import com.example.vincent.eip.Interfaces.CallbackRequestClick;
 import com.example.vincent.eip.Interfaces.OnTaskCompleted;
 import com.example.vincent.eip.Network.UserClientInfo;
 import com.example.vincent.eip.R;
 import com.example.vincent.eip.Network.SendData;
+import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.layer_net.stepindicator.StepIndicator;
 
@@ -52,9 +54,9 @@ public class MainActivity extends AppCompatActivity
     private ViewPager mRequestViewPager;
 
     private FloatingActionMenu menuServices;
-//    private FloatingActionButton fab1;
-//    private FloatingActionButton fab2;
-//    private FloatingActionButton fab3;
+    private FloatingActionButton fab1;
+    private FloatingActionButton fab2;
+    private FloatingActionButton fab3;
 
     private android.support.design.widget.FloatingActionButton fab;
 //    private BottomSheetBehavior mBottomSheetBehavior;
@@ -103,75 +105,53 @@ public class MainActivity extends AppCompatActivity
             }
                 });
         menuServices = (FloatingActionMenu) findViewById(R.id.menu);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                SendData data = new SendData();
-//                GlobalClass global=(GlobalClass) MainActivity.this.getApplication();
-//                UserClientInfo clientInfo = global.userInfos;
-//               data.getInfoEvent(MainActivity.this, clientInfo);
-//                MessageRetrofit testMessages = new MessageRetrofit();
-//                            testMessages.login(MainActivity.this, clientInfo);
-                if (isOpen){
-                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-                    appBarLayout.setExpanded(false, true);
-                    isOpen = false;
-                } else {
-                    appBarLayout.setExpanded(true, true);
-                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-                    isOpen = true;
-                }
-            }
-        });
-//        fab1 = (FloatingActionButton) findViewById(R.id.menu_item1);
-//        fab2 = (FloatingActionButton) findViewById(R.id.menu_item2);
-//        fab3 = (FloatingActionButton) findViewById(R.id.menu_item3);
-//
-//
-//        fab1.setOnClickListener(new View.OnClickListener() {
+//        fab.setOnClickListener(new View.OnClickListener() {
 //            @Override
-//            public void onClick(View v) {
-////                mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-//                appBarLayout.setExpanded(false, true);
-//
+//            public void onClick(View view) {
+////                SendData data = new SendData();
+////                GlobalClass global=(GlobalClass) MainActivity.this.getApplication();
+////                UserClientInfo clientInfo = global.userInfos;
+////               data.getInfoEvent(MainActivity.this, clientInfo);
+////                MessageRetrofit testMessages = new MessageRetrofit();
+////                            testMessages.login(MainActivity.this, clientInfo);
+//                if (isOpen){
+//                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+//                    appBarLayout.setExpanded(false, true);
+//                    isOpen = false;
+//                } else {
+//                    appBarLayout.setExpanded(true, true);
+//                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+//                    isOpen = true;
+//                }
 //            }
 //        });
-//
-//        fab2.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//            menuServices.close(true);
-//                final GlobalClass global=(GlobalClass) MainActivity.this.getApplication();
-//                data.getServicesFromSector(MainActivity.this, global.userInfos, "entretien", new OnTaskCompleted() {
-//                    @Override
-//                    public void onTaskCompleted() {
-////                        mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-//                        mCallRequestFragment.showDataCleaning(global.listServices, new CallbackRequestClick() {
-//                            @Override
-//                            public void OnRequestClick() {
-//                                mRequestViewPager.setCurrentItem(1, true);
-//                            }
-//                        });
-//                    }});
-//            }});
-//
-//
-//        fab3.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                final GlobalClass global=(GlobalClass) MainActivity.this.getApplication();
-//                data.getServicesFromSector(MainActivity.this, global.userInfos, "cuisine", new OnTaskCompleted() {
-//                    @Override
-//                    public void onTaskCompleted() {
-////                        mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-//                        mCallRequestFragment.showDataFood(global.listServices, new CallbackRequestClick() {
-//                            @Override
-//                            public void OnRequestClick() {
-//
-//                            }
-//                        });
-//                    }});
-//            }});
+        fab1 = (FloatingActionButton) findViewById(R.id.menu_item1);
+        fab2 = (FloatingActionButton) findViewById(R.id.menu_item2);
+        fab3 = (FloatingActionButton) findViewById(R.id.menu_item3);
+
+
+        fab1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ListMessagesActivity.class);
+                MainActivity.this.startActivity(intent);
+            }
+        });
+
+        fab2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ListDevicesActivity.class);
+                MainActivity.this.startActivity(intent);
+            }});
+
+
+        fab3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(MainActivity.this, SectorActivity.class);
+                MainActivity.this.startActivity(myIntent);
+            }});
 
 
         tabsViewPager = (ViewPager) findViewById(R.id.tabsviewpager);
