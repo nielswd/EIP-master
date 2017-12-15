@@ -135,6 +135,7 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ListMessagesActivity.class);
                 MainActivity.this.startActivity(intent);
+                menuServices.close(true);
             }
         });
 
@@ -143,6 +144,7 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ListDevicesActivity.class);
                 MainActivity.this.startActivity(intent);
+                menuServices.close(true);
             }});
 
 
@@ -151,6 +153,7 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View v) {
                 Intent myIntent = new Intent(MainActivity.this, SectorActivity.class);
                 MainActivity.this.startActivity(myIntent);
+                menuServices.close(true);
             }});
 
 

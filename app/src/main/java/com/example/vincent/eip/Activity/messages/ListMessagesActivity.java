@@ -4,10 +4,15 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.text.format.DateFormat;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +20,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.vincent.eip.Activity.RVAdapterListRequest;
+import com.example.vincent.eip.Activity.ViewPagerAdapter;
+import com.example.vincent.eip.Activity.messages.MessageReceived.MessagesReceivedFragment;
+import com.example.vincent.eip.Activity.messages.MessageSent.MessagesSentFragment;
+import com.example.vincent.eip.Fragments.infoevent.InfoEventsFragment;
+import com.example.vincent.eip.Fragments.openinghours.OpeningHoursFragment;
+import com.example.vincent.eip.Fragments.touristicplaces.TouristicPlacesFragment;
+import com.example.vincent.eip.Fragments.transports.TransportsFragment;
 import com.example.vincent.eip.GlobalClass;
 import com.example.vincent.eip.Interfaces.GetMessagesCallback;
 import com.example.vincent.eip.Interfaces.GetRequestCallback;
@@ -38,16 +50,23 @@ import java.util.Date;
  * Created by niels on 07/07/2017.
  */
 
-public class ListMessagesActivity extends Activity {
-    private RecyclerView recyclerView;
-    private RecyclerView recyclerView2;
-    private RVAdapterListMessages rvAdapterListMessages;
-    private RVAdapterListMessages rvAdapterListMessages2;
+public class ListMessagesActivity extends AppCompatActivity {
+    private TabLayout tabLayout;
+    private ViewPager tabsViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messages);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Messages");
+        setSupportActionBar(toolbar);
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setHomeButtonEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
         FloatingActionButton newMessage = (FloatingActionButton) findViewById(R.id.new_message);
         newMessage.setOnClickListener(new View.OnClickListener() {
@@ -107,42 +126,29 @@ public class ListMessagesActivity extends Activity {
             }
         });
 
-        //        SendData data = new SendData();
-        GlobalClass global=(GlobalClass) getApplication();
-        UserClientInfo clientInfo = global.userInfos;
-//        data.getTransports(mContainerActivity, clientInfo);
+        tabsViewPager = (ViewPager) findViewById(R.id.tabsviewpager);
+        setupTabsViewPager(tabsViewPager);
 
-        MessageRetrofit transportRetrofit = new MessageRetrofit();
 
-        recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(tabsViewPager);
+    }
 
-        transportRetrofit.login(ListMessagesActivity.this, clientInfo, new GetMessagesCallback() {
-            @Override
-            public void getMessages(Messages messages) {
-                if (messages != null){
-                    rvAdapterListMessages = new RVAdapterListMessages(messages, ListMessagesActivity.this);
-                    RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(ListMessagesActivity.this);
-                    recyclerView.setLayoutManager(mLayoutManager);
-                    recyclerView.setItemAnimator(new DefaultItemAnimator());
-                    recyclerView.setAdapter(rvAdapterListMessages);
-                }
-            }
-        });
+    private void setupTabsViewPager(ViewPager viewPager) {
+        MessagesVPAdapter adapter = new MessagesVPAdapter(getSupportFragmentManager());
+        adapter.addFragment(new MessagesReceivedFragment(), "Boite de réception");
+        adapter.addFragment(new MessagesSentFragment(), "Messages Envoyés");
+        viewPager.arrowScroll(View.FOCUS_LEFT);
+        viewPager.arrowScroll(View.FOCUS_RIGHT);
+        viewPager.setAdapter(adapter);
+    }
 
-        recyclerView2 = (RecyclerView) findViewById(R.id.my_recycler_view2);
-        MessageRetrofit transportRetrofit2 = new MessageRetrofit();
-        transportRetrofit2.getSent(ListMessagesActivity.this, clientInfo, new GetMessagesCallback() {
-            @Override
-            public void getMessages(Messages messages2) {
-                if (messages2 != null){
-                    rvAdapterListMessages2 = new RVAdapterListMessages(messages2, ListMessagesActivity.this);
-                    RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(ListMessagesActivity.this);
-                    recyclerView2.setLayoutManager(mLayoutManager);
-                    recyclerView2.setItemAnimator(new DefaultItemAnimator());
-                    recyclerView2.setAdapter(rvAdapterListMessages2);
-                }
-            }
-        });
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.home) {
+            super.onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
