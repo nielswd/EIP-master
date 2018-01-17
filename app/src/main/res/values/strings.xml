@@ -9,5 +9,5 @@
 
     <string name="serverURLRest">http://212.227.53.116:8080/WSmartgroom/rest/</string>
 
-    <string name="serverURLDomotique">http://10.41.178.172</string>
+    <string name="serverURLDomotique">http://86.242.11.197:8080</string>
 </resources>

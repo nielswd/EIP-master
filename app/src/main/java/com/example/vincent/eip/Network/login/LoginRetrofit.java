@@ -80,7 +80,17 @@ public class LoginRetrofit {
         call.enqueue(new Callback<Login>() {
             @Override
             public void onResponse(Call<Login> call, retrofit2.Response<Login> response) {
-                manageSuccessfulLogin(response);
+                try {
+                    if (response.body().getCode().equals("200")){
+                        manageSuccessfulLogin(response);
+                    } else {
+                        mLoginListener.OnLoginAchevied(false);
+                    }
+                } catch (NullPointerException e){
+                    mLoginListener.OnLoginAchevied(false);
+                    e.printStackTrace();
+                }
+
             }
 
             @Override
@@ -105,6 +115,7 @@ public class LoginRetrofit {
     }
 
     private void manageSuccessfulLogin(retrofit2.Response<Login> response) {
+
         Log.d("response retrofit", response.body().getCode() + " " + response.body().getSessionId());
         clientInfo.setSessionId(response.body().getSessionId());
         GlobalClass global = (GlobalClass) activity.getApplication();
